@@ -1,0 +1,50 @@
+﻿@model List<ProductApplication.Models.Product.ProductModel>
+
+<h2>Products</h2>
+
+<p>
+    <a asp-action="CreateProduct">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].NamaBarang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].KodeBarang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].JumlahBarang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Tanggal)
+            </th>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NamaBarang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KodeBarang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JumlahBarang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tanggal.ToString("dd MMM yyyy"))
+                </td>
+                <td>
+                    <a asp-action="DetailProduct" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="UpdateProduct" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="DeleteProduct" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

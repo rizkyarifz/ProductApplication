@@ -1,0 +1,43 @@
+-- AddProduct
+CREATE PROCEDURE AddProduct
+    @NamaBarang VARCHAR(200),
+    @KodeBarang VARCHAR(50),
+    @JumlahBarang INT,
+    @Tanggal DATETIME
+AS
+BEGIN
+    INSERT INTO Products (NamaBarang, KodeBarang, JumlahBarang, Tanggal)
+    VALUES (@NamaBarang, @KodeBarang, @JumlahBarang, @Tanggal)
+END
+
+-- UpdateProduct
+CREATE PROCEDURE UpdateProduct
+    @Id INT,
+    @NamaBarang VARCHAR(200),
+    @KodeBarang VARCHAR(50),
+    @JumlahBarang INT,
+    @Tanggal DATETIME
+AS
+BEGIN
+    UPDATE Products
+    SET NamaBarang = @NamaBarang, KodeBarang = @KodeBarang, JumlahBarang = @JumlahBarang, Tanggal = @Tanggal
+    WHERE Id = @Id
+END
+
+-- DeleteProduct
+CREATE PROCEDURE DeleteProduct
+    @Id INT
+AS
+BEGIN
+    DELETE FROM Products
+    WHERE Id = @Id
+END
+
+-- SearchProduct
+CREATE PROCEDURE SearchProduct
+    @Filter VARCHAR(100)
+AS
+BEGIN
+    SELECT * FROM Products
+    WHERE NamaBarang LIKE '%' + @Filter + '%' OR KodeBarang LIKE '%' + @Filter + '%'
+END
