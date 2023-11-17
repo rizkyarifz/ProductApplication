@@ -6,7 +6,7 @@ CREATE PROCEDURE AddProduct
     @Tanggal DATETIME
 AS
 BEGIN
-    INSERT INTO Products (NamaBarang, KodeBarang, JumlahBarang, Tanggal)
+    INSERT INTO Product (NamaBarang, KodeBarang, JumlahBarang, Tanggal)
     VALUES (@NamaBarang, @KodeBarang, @JumlahBarang, @Tanggal)
 END
 
@@ -19,7 +19,7 @@ CREATE PROCEDURE UpdateProduct
     @Tanggal DATETIME
 AS
 BEGIN
-    UPDATE Products
+    UPDATE Product
     SET NamaBarang = @NamaBarang, KodeBarang = @KodeBarang, JumlahBarang = @JumlahBarang, Tanggal = @Tanggal
     WHERE Id = @Id
 END
@@ -29,7 +29,7 @@ CREATE PROCEDURE DeleteProduct
     @Id INT
 AS
 BEGIN
-    DELETE FROM Products
+    DELETE FROM Product
     WHERE Id = @Id
 END
 
@@ -38,6 +38,6 @@ CREATE PROCEDURE SearchProduct
     @Filter VARCHAR(100)
 AS
 BEGIN
-    SELECT * FROM Products
+    SELECT * FROM Product
     WHERE NamaBarang LIKE '%' + @Filter + '%' OR KodeBarang LIKE '%' + @Filter + '%'
 END

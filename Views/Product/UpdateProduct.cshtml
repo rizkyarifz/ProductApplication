@@ -2,12 +2,23 @@
 
 <h2>Update Product</h2>
 
-<form asp-action="UpdateProduct" asp-route-id="@Model.Id" method="post">
+<form asp-controller="Product" asp-action="EditProduct" method="post" asp-route-id="@Model.Id" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="NamaBarang" class="control-label"></label>
         <input asp-for="NamaBarang" class="form-control" />
         <span asp-validation-for="NamaBarang" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="KodeBarang" class="control-label"></label>
+        <input asp-for="KodeBarang" class="form-control" />
+        <span asp-validation-for="KodeBarang" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="JumlahBarang" class="control-label"></label>
+        <input asp-for="JumlahBarang" class="form-control" />
+        <span asp-validation-for="JumlahBarang" class="text-danger"></span>
     </div>
     <!-- Add other input fields for properties -->
     <div class="form-group">
@@ -18,3 +29,8 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

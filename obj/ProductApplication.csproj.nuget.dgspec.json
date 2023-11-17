@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rzaelani\\Documents\\Timesheet\\data pribadi\\PT Asys (Aero System Indonesia)\\Technical Test\\LoopingAndReplace\\ProductApplication\\ProductApplication.csproj": {}
+    "C:\\Users\\rzaelani\\Documents\\Timesheet\\data pribadi\\PT Asys (Aero System Indonesia)\\Technical Test\\Git\\ProductApplication\\ProductApplication.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rzaelani\\Documents\\Timesheet\\data pribadi\\PT Asys (Aero System Indonesia)\\Technical Test\\LoopingAndReplace\\ProductApplication\\ProductApplication.csproj": {
+    "C:\\Users\\rzaelani\\Documents\\Timesheet\\data pribadi\\PT Asys (Aero System Indonesia)\\Technical Test\\Git\\ProductApplication\\ProductApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rzaelani\\Documents\\Timesheet\\data pribadi\\PT Asys (Aero System Indonesia)\\Technical Test\\LoopingAndReplace\\ProductApplication\\ProductApplication.csproj",
+        "projectUniqueName": "C:\\Users\\rzaelani\\Documents\\Timesheet\\data pribadi\\PT Asys (Aero System Indonesia)\\Technical Test\\Git\\ProductApplication\\ProductApplication.csproj",
         "projectName": "ProductApplication",
-        "projectPath": "C:\\Users\\rzaelani\\Documents\\Timesheet\\data pribadi\\PT Asys (Aero System Indonesia)\\Technical Test\\LoopingAndReplace\\ProductApplication\\ProductApplication.csproj",
+        "projectPath": "C:\\Users\\rzaelani\\Documents\\Timesheet\\data pribadi\\PT Asys (Aero System Indonesia)\\Technical Test\\Git\\ProductApplication\\ProductApplication.csproj",
         "packagesPath": "C:\\Users\\rzaelani\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rzaelani\\Documents\\Timesheet\\data pribadi\\PT Asys (Aero System Indonesia)\\Technical Test\\LoopingAndReplace\\ProductApplication\\obj\\",
+        "outputPath": "C:\\Users\\rzaelani\\Documents\\Timesheet\\data pribadi\\PT Asys (Aero System Indonesia)\\Technical Test\\Git\\ProductApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages",

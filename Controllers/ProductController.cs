@@ -1,20 +1,20 @@
-﻿// ProductsController.cs
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ProductApplication.Models;
 using ProductApplication.Models.Product;
 using ProductApplication.Models.Response;
 using ProductApplication.Service;
+using ProductApplication.Service.Product;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 
 public class ProductController : Controller
 {    
-    private readonly ProductService _svc;
+    private readonly IProductService _svc;
 
-    public ProductController(ProductService svc)
+    public ProductController(IProductService svc)
     {        
         _svc = svc;
     }
@@ -53,9 +53,9 @@ public class ProductController : Controller
         return View();
     }
 
-    [HttpPost, ActionName("Add")]
+    [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<ResponseModel> AddProduct([FromBody] ProductModel product)
+    public async Task<IActionResult> AddProduct(ProductModel product)
     {
         ResponseModel response = new ResponseModel();
 
@@ -64,23 +64,16 @@ public class ProductController : Controller
             try
             {
                 await _svc.AddProduct(product);
-
-                response.status_code = (int)HttpStatusCode.OK;
-                response.message = "Product added successfully";
+                TempData["SuccessMessage"] = "Product added successfully"; // Use TempData to pass a success message to the next request
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
-            {
-                response.status_code = (int)HttpStatusCode.InternalServerError;
-                response.message = $"An error occurred: {ex.Message}";
+            {                
+                ModelState.AddModelError(string.Empty, $"An error occurred: {ex.Message}");
             }
         }
-        else
-        {
-            response.status_code = (int)HttpStatusCode.BadRequest;
-            response.message = "Invalid product data";
-        }
 
-        return response;
+        return View(product);
     }
 
     public async Task<IActionResult> UpdateProduct(int? id)
@@ -100,9 +93,9 @@ public class ProductController : Controller
     }
 
 
-    [HttpPatch, ActionName("Update")]
+    [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<ResponseModel> EditProduct([FromBody] ProductModel product)
+    public async Task<ActionResult> EditProduct(ProductModel product)
     {
         ResponseModel response = new ResponseModel();
 
@@ -111,23 +104,16 @@ public class ProductController : Controller
             try
             {
                 await _svc.EditProduct(product);
-
-                response.status_code = (int)HttpStatusCode.OK;
-                response.message = "Product updated successfully";
+                TempData["SuccessMessage"] = "Product Updated successfully"; // Use TempData to pass a success message to the next request
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                response.status_code = (int)HttpStatusCode.InternalServerError;
-                response.message = $"An error occurred: {ex.Message}";
+                ModelState.AddModelError(string.Empty, $"An error occurred: {ex.Message}");
             }
         }
-        else
-        {
-            response.status_code = (int)HttpStatusCode.BadRequest;
-            response.message = "Invalid product data";
-        }
 
-        return response;
+        return View(product);
     }
 
     public async Task<IActionResult> DeleteProduct(int? id)
@@ -146,9 +132,9 @@ public class ProductController : Controller
         return View(product);
     }
 
-    [HttpDelete, ActionName("Delete")]
+    [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<ResponseModel> DeleteProduct([FromBody] int ID)
+    public async Task<ActionResult> DeleteProduct(int ID)
     {
         ResponseModel response = new ResponseModel();
 
@@ -157,23 +143,16 @@ public class ProductController : Controller
             try
             {
                 await _svc.DeleteProduct(ID);
-
-                response.status_code = (int)HttpStatusCode.OK;
-                response.message = "Product updated successfully";
+                TempData["SuccessMessage"] = "Product deleted successfully"; // Use TempData to pass a success message to the next request
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                response.status_code = (int)HttpStatusCode.InternalServerError;
-                response.message = $"An error occurred: {ex.Message}";
+                ModelState.AddModelError(string.Empty, $"An error occurred: {ex.Message}");
             }
         }
-        else
-        {
-            response.status_code = (int)HttpStatusCode.BadRequest;
-            response.message = "Invalid product data";
-        }
 
-        return response;
+        return RedirectToAction("Index");
     }
 
 }

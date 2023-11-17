@@ -1,11 +1,23 @@
-﻿@model List<ProductApplication.Models.Product.ProductModel>
+﻿@using System.Globalization;
+@model List<ProductApplication.Models.Product.ProductModel>
 
 <h2>Products</h2>
 
 <p>
     <a asp-action="CreateProduct">Create New</a>
 </p>
-
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-error">
+        @TempData["ErrorMessage"]
+    </div>
+}
 <table class="table">
     <thead>
         <tr>
@@ -37,7 +49,7 @@
                     @Html.DisplayFor(modelItem => item.JumlahBarang)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Tanggal.ToString("dd MMM yyyy"))
+                    @Html.DisplayFor(modelItem => item.Tanggal)
                 </td>
                 <td>
                     <a asp-action="DetailProduct" asp-route-id="@item.Id">Details</a> |

@@ -45,7 +45,7 @@ namespace ProductApplication.Service
                 parameters.Add(new SqlParameter("@NamaBarang", product.NamaBarang));
                 parameters.Add(new SqlParameter("@KodeBarang", product.KodeBarang));
                 parameters.Add(new SqlParameter("@JumlahBarang", product.JumlahBarang));
-                parameters.Add(new SqlParameter("@Tanggal", product.Tanggal));                
+                parameters.Add(new SqlParameter("@Tanggal", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")));                
 
                 var data = await _Context.Database.ExecuteSqlRawAsync("EXEC AddProduct @NamaBarang, @KodeBarang, @JumlahBarang, @Tanggal", parameters);
 
@@ -65,7 +65,7 @@ namespace ProductApplication.Service
                 parameters.Add(new SqlParameter("@NamaBarang", product.NamaBarang));
                 parameters.Add(new SqlParameter("@KodeBarang", product.KodeBarang));
                 parameters.Add(new SqlParameter("@JumlahBarang", product.JumlahBarang));
-                parameters.Add(new SqlParameter("@Tanggal", product.Tanggal));
+                parameters.Add(new SqlParameter("@Tanggal", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")));
 
                 var data = await _Context.Database.ExecuteSqlRawAsync("EXEC UpdateProduct @Id, @NamaBarang, @KodeBarang, @JumlahBarang, @Tanggal", parameters);
 
